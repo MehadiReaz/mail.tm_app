@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qtec_solution_task/presentation/screens/create_account_screen.dart';
 import 'package:qtec_solution_task/presentation/screens/home_screen.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 import '../blocs/login/login_cubit.dart';
 
@@ -15,6 +16,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final talker = TalkerFlutter.init();
+
     return BlocProvider(
       create: (context) => LoginCubit(),
       child: BlocBuilder<LoginCubit, LoginState>(
@@ -32,35 +35,55 @@ class LoginScreen extends StatelessWidget {
             });
           }
           return Scaffold(
-            appBar: AppBar(
-              title: const Text('Login'),
-            ),
             body: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const Center(
+                    child: Text(
+                      'Welcome to TEMP MAIL',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 26),
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                  const Text('Enter Email'),
+                  const SizedBox(height: 10),
                   Row(
                     children: [
                       Expanded(
                         child: TextFormField(
                           controller: addressController,
-                          decoration:
-                              const InputDecoration(labelText: 'Address'),
+                          decoration: InputDecoration(
+                              hintText: 'example@$selectedDomain'),
                         ),
                       ),
                       const SizedBox(width: 10),
-                      Text(selectedDomain),
+                      Text(
+                        '@$selectedDomain',
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 20),
+                  const Text('Enter Password'),
+                  const SizedBox(height: 10),
                   TextFormField(
                     controller: passwordController,
-                    decoration: const InputDecoration(labelText: 'Password'),
+                    decoration:
+                        const InputDecoration(hintText: 'Enter Password'),
                     obscureText: true,
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(),
                     onPressed: () {
                       final address =
                           '${addressController.text}@$selectedDomain';
@@ -69,7 +92,8 @@ class LoginScreen extends StatelessWidget {
                     },
                     child: const Text('Login'),
                   ),
-                  ElevatedButton(
+                  const SizedBox(height: 10),
+                  TextButton(
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -83,13 +107,14 @@ class LoginScreen extends StatelessWidget {
                     child: const Text('Create Account'),
                   ),
                   if (state is LoginError)
-                    SizedBox(
-                      height: 20,
-                      child: Text(
-                        state.error,
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    ),
+                    TalkerWrapper(
+                        talker: talker,
+                        options: const TalkerWrapperOptions(
+                          enableExceptionAlerts: true,
+                          errorTitle: 'error',
+                          enableErrorAlerts: true,
+                        ),
+                        child: Text(state.error)),
                 ],
               ),
             ),
