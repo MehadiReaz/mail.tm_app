@@ -1,4 +1,6 @@
 // domain_service.dart
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/domain_model.dart';
@@ -21,6 +23,7 @@ class DomainService {
   Future<void> storeToken(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('token', token);
+    log(token);
   }
 
   Future<String?> retrieveToken() async {

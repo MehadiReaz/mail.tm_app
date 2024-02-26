@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<HomeCubit>().getMessages(); // Trigger fetching messages
+    context.read<HomeCubit>().getMessages();
 
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
@@ -24,6 +24,10 @@ class HomeScreen extends StatelessWidget {
               'Inbox',
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 30),
             ),
+            actions: [
+              IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.logout_outlined))
+            ],
           ),
           body: _buildBody(state, context),
         );
