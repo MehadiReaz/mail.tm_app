@@ -1,29 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-class HomeModel extends Equatable {
-  final List<MessageModel> messages;
-
-  const HomeModel({
-    required this.messages,
-  });
-
-  @override
-  List<Object?> get props => [messages];
-
-  factory HomeModel.fromJson(Map<String, dynamic> json) {
-    return HomeModel(
-      messages: (json['hydra:member'] as List)
-          .map((message) => MessageModel.fromJson(message))
-          .toList(),
-    );
-  }
-}
-
 class MessageModel extends Equatable {
   final String id;
   final String msgid;
-  final SenderModel from;
-  final List<RecipientModel> to;
+  final Map<String, dynamic> from;
+  final List<Map<String, dynamic>> to;
   final String subject;
   final String intro;
   final bool seen;
@@ -36,7 +17,7 @@ class MessageModel extends Equatable {
   final String updatedAt;
   final String accountId;
 
-  const MessageModel({
+  MessageModel({
     required this.id,
     required this.msgid,
     required this.from,
@@ -75,12 +56,10 @@ class MessageModel extends Equatable {
 
   factory MessageModel.fromJson(Map<String, dynamic> json) {
     return MessageModel(
-      id: json['@id'] ?? '',
+      id: json['id'] ?? '',
       msgid: json['msgid'] ?? '',
-      from: SenderModel.fromJson(json['from']),
-      to: (json['to'] as List)
-          .map((recipient) => RecipientModel.fromJson(recipient))
-          .toList(),
+      from: json['from'] ?? {},
+      to: List<Map<String, dynamic>>.from(json['to'] ?? []),
       subject: json['subject'] ?? '',
       intro: json['intro'] ?? '',
       seen: json['seen'] ?? false,
@@ -92,46 +71,6 @@ class MessageModel extends Equatable {
       createdAt: json['createdAt'] ?? '',
       updatedAt: json['updatedAt'] ?? '',
       accountId: json['accountId'] ?? '',
-    );
-  }
-}
-
-class SenderModel extends Equatable {
-  final String address;
-  final String name;
-
-  const SenderModel({
-    required this.address,
-    required this.name,
-  });
-
-  @override
-  List<Object?> get props => [address, name];
-
-  factory SenderModel.fromJson(Map<String, dynamic> json) {
-    return SenderModel(
-      address: json['address'] ?? '',
-      name: json['name'] ?? '',
-    );
-  }
-}
-
-class RecipientModel extends Equatable {
-  final String address;
-  final String name;
-
-  const RecipientModel({
-    required this.address,
-    required this.name,
-  });
-
-  @override
-  List<Object?> get props => [address, name];
-
-  factory RecipientModel.fromJson(Map<String, dynamic> json) {
-    return RecipientModel(
-      address: json['address'] ?? '',
-      name: json['name'] ?? '',
     );
   }
 }

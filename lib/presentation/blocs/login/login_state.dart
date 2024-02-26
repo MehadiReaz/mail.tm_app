@@ -12,7 +12,7 @@ class LoginInitial extends LoginState {}
 class LoginSuccess extends LoginState {
   final String token;
 
-  LoginSuccess(this.token);
+  const LoginSuccess(this.token);
 
   @override
   List<Object> get props => [token];
@@ -21,7 +21,7 @@ class LoginSuccess extends LoginState {
 class LoginError extends LoginState {
   final String error;
 
-  LoginError(this.error);
+  const LoginError(this.error);
 
   @override
   List<Object> get props => [error];

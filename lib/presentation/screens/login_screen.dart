@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qtec_solution_task/presentation/screens/home_screen.dart';
 
 import '../blocs/login/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   final String selectedDomain;
 
-  LoginScreen({required this.selectedDomain, required domain});
+  LoginScreen({super.key, required this.selectedDomain});
 
   final TextEditingController addressController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -17,9 +18,23 @@ class LoginScreen extends StatelessWidget {
       create: (context) => LoginCubit(),
       child: BlocBuilder<LoginCubit, LoginState>(
         builder: (context, state) {
+          print('Login State: $state');
+          if (state is LoginSuccess) {
+            print('Navigating to HomeScreen');
+            Future.delayed(Duration.zero, () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeScreen(
+                      //token: state.token,
+                      ),
+                ),
+              );
+            });
+          }
           return Scaffold(
             appBar: AppBar(
-              title: Text('Login'),
+              title: const Text('Login'),
             ),
             body: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -31,20 +46,21 @@ class LoginScreen extends StatelessWidget {
                       Expanded(
                         child: TextFormField(
                           controller: addressController,
-                          decoration: InputDecoration(labelText: 'Address'),
+                          decoration:
+                              const InputDecoration(labelText: 'Address'),
                         ),
                       ),
-                      SizedBox(width: 10),
-                      Text(selectedDomain), // Display the selected domain
+                      const SizedBox(width: 10),
+                      Text(selectedDomain),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: passwordController,
-                    decoration: InputDecoration(labelText: 'Password'),
+                    decoration: const InputDecoration(labelText: 'Password'),
                     obscureText: true,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       final address =
@@ -52,14 +68,14 @@ class LoginScreen extends StatelessWidget {
                       final password = passwordController.text;
                       context.read<LoginCubit>().login(address, password);
                     },
-                    child: Text('Login'),
+                    child: const Text('Login'),
                   ),
                   if (state is LoginError)
                     SizedBox(
                       height: 20,
                       child: Text(
                         state.error,
-                        style: TextStyle(color: Colors.red),
+                        style: const TextStyle(color: Colors.red),
                       ),
                     ),
                 ],

@@ -63,7 +63,6 @@ class DomainScreen extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => LoginScreen(
               selectedDomain: domain.domain,
-              domain: domain.domain,
             ),
           ),
         );

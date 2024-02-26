@@ -10,12 +10,12 @@ abstract class HomeState extends Equatable {
 class HomeInitial extends HomeState {}
 
 class MessagesLoaded extends HomeState {
-  final dynamic data;
+  final List<MessageModel> messages;
 
-  MessagesLoaded(this.data);
+  MessagesLoaded(this.messages);
 
   @override
-  List<Object> get props => [data];
+  List<Object> get props => [messages];
 }
 
 class HomeError extends HomeState {
