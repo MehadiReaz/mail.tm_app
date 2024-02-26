@@ -58,7 +58,7 @@ class MessageModel extends Equatable {
     return MessageModel(
       id: json['id'] ?? '',
       msgid: json['msgid'] ?? '',
-      from: json['from'] ?? {},
+      from: Map<String, dynamic>.from(json['from'] ?? {}),
       to: List<Map<String, dynamic>>.from(json['to'] ?? []),
       subject: json['subject'] ?? '',
       intro: json['intro'] ?? '',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'presentation/blocs/create_account/create_account_cubit.dart';
 import 'presentation/blocs/domain/domain_cubit.dart';
 import 'presentation/blocs/home/home_cubit.dart';
 import 'presentation/blocs/login/login_cubit.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => DomainCubit()),
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => HomeCubit()),
+        BlocProvider(create: (context) => CreateAccountCubit()),
       ],
       child: MaterialApp(
         title: 'QtecS',

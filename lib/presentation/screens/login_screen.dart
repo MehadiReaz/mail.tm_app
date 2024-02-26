@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qtec_solution_task/presentation/screens/create_account_screen.dart';
 import 'package:qtec_solution_task/presentation/screens/home_screen.dart';
 
-import '../blocs/home/home_cubit.dart';
 import '../blocs/login/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -19,7 +19,6 @@ class LoginScreen extends StatelessWidget {
       create: (context) => LoginCubit(),
       child: BlocBuilder<LoginCubit, LoginState>(
         builder: (context, state) {
-          var loginState = context.read<LoginCubit>().state;
           print('Login State: $state');
           if (state is LoginSuccess) {
             print('Navigating to HomeScreen');
@@ -69,6 +68,19 @@ class LoginScreen extends StatelessWidget {
                       context.read<LoginCubit>().login(address, password);
                     },
                     child: const Text('Login'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CreateAccountScreen(
+                            selectedDomain: selectedDomain,
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Text('Create Account'),
                   ),
                   if (state is LoginError)
                     SizedBox(

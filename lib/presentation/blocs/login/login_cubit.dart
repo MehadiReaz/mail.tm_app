@@ -14,8 +14,8 @@ class LoginCubit extends Cubit<LoginState> {
       final response = await DioInstance.dio.post(
         '/token',
         data: {
-          "address": "reaz@yogirt.com",
-          "password": "12345678",
+          "address": address,
+          "password": password,
         },
       );
       emit(LoginSuccess(response.data['token']));
