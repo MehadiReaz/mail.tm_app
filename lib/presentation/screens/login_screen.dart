@@ -19,14 +19,14 @@ class LoginScreen extends StatelessWidget {
       create: (context) => LoginCubit(),
       child: BlocBuilder<LoginCubit, LoginState>(
         builder: (context, state) {
-          print('Login State: $state');
+          debugPrint('Login State: $state');
           if (state is LoginSuccess) {
-            print('Navigating to HomeScreen');
+            debugPrint('Navigating to HomeScreen');
             Future.delayed(Duration.zero, () {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomeScreen(),
+                  builder: (context) => const HomeScreen(),
                 ),
               );
             });

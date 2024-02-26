@@ -17,7 +17,7 @@ class MessageModel extends Equatable {
   final String updatedAt;
   final String accountId;
 
-  MessageModel({
+  const MessageModel({
     required this.id,
     required this.msgid,
     required this.from,

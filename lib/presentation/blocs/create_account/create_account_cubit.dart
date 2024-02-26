@@ -1,6 +1,7 @@
 // create_account_cubit.dart
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import '../../../app/dio.dart';
 
@@ -20,7 +21,7 @@ class CreateAccountCubit extends Cubit<CreateAccountState> {
       );
       emit(const CreateAccountSuccess());
     } catch (e) {
-      print("Error during account creation: $e");
+      debugPrint("Error during account creation: $e");
       emit(CreateAccountError(e.toString()));
     }
   }

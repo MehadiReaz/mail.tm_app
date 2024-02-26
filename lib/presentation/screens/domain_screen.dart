@@ -6,6 +6,8 @@ import '../blocs/domain/domain_cubit.dart';
 import 'login_screen.dart';
 
 class DomainScreen extends StatelessWidget {
+  const DomainScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -14,7 +16,7 @@ class DomainScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Domain Screen'),
+              title: const Text('Domain Screen'),
             ),
             body: _buildBody(context, state),
           );
@@ -29,7 +31,7 @@ class DomainScreen extends StatelessWidget {
       context
           .read<DomainCubit>()
           .getDomains(); // Trigger the request to get domains
-      return Center(
+      return const Center(
         child: CircularProgressIndicator(),
       );
     } else if (state is DomainsLoaded) {
@@ -45,7 +47,7 @@ class DomainScreen extends StatelessWidget {
       return Center(
         child: Text(
           'Error: ${state.error}',
-          style: TextStyle(color: Colors.red),
+          style: const TextStyle(color: Colors.red),
         ),
       );
     } else {

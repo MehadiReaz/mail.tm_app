@@ -21,7 +21,7 @@ class MessagesLoaded extends HomeState {
 class HomeError extends HomeState {
   final String error;
 
-  HomeError(this.error);
+  const HomeError(this.error);
 
   @override
   List<Object> get props => [error];

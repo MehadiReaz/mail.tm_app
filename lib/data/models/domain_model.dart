@@ -8,7 +8,7 @@ class DomainModel extends Equatable {
   final String createdAt;
   final String updatedAt;
 
-  DomainModel({
+  const DomainModel({
     required this.id,
     required this.domain,
     required this.isActive,
