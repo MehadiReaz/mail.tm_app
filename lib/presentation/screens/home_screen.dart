@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qtec_solution_task/presentation/screens/email_details_screen.dart';
+import 'package:intl/intl.dart';
 
 import '../blocs/home/home_cubit.dart';
 
@@ -15,7 +16,14 @@ class HomeScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Inbox'),
+            automaticallyImplyLeading: false,
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            centerTitle: true,
+            title: const Text(
+              'Inbox',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 30),
+            ),
           ),
           body: _buildBody(state, context),
         );
@@ -27,9 +35,7 @@ class HomeScreen extends StatelessWidget {
     if (state is MessagesLoaded) {
       return RefreshIndicator(
         onRefresh: () async {
-          context
-              .read<HomeCubit>()
-              .getMessages(); // Trigger fetching messages on pull-to-refresh
+          context.read<HomeCubit>().getMessages();
         },
         child: ListView.builder(
           itemCount: state.messages.length,
@@ -38,7 +44,6 @@ class HomeScreen extends StatelessWidget {
 
             return ListTile(
               onTap: () {
-                // Navigate to the DetailsScreen when email is tapped
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -46,8 +51,36 @@ class HomeScreen extends StatelessWidget {
                   ),
                 );
               },
-              title: Text(message.subject),
-              subtitle: Text(message.intro),
+              leading: CircleAvatar(
+                backgroundColor: Colors.blue,
+                child: Text(
+                  message.from['name'][0],
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+              title: Text(
+                message.subject,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                message.intro,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+              trailing: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    DateFormat('dd MMM')
+                        .format(DateTime.parse(message.createdAt)),
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  if (!message.seen) const Icon(Icons.mark_email_unread),
+                ],
+              ),
             );
           },
         ),
