@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qtec_solution_task/presentation/screens/home_screen.dart';
 
+import '../blocs/home/home_cubit.dart';
 import '../blocs/login/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -18,6 +19,7 @@ class LoginScreen extends StatelessWidget {
       create: (context) => LoginCubit(),
       child: BlocBuilder<LoginCubit, LoginState>(
         builder: (context, state) {
+          var loginState = context.read<LoginCubit>().state;
           print('Login State: $state');
           if (state is LoginSuccess) {
             print('Navigating to HomeScreen');
@@ -25,9 +27,7 @@ class LoginScreen extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomeScreen(
-                      //token: state.token,
-                      ),
+                  builder: (context) => HomeScreen(),
                 ),
               );
             });

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => HomeCubit()),
       ],
       child: MaterialApp(
-        title: 'Your App',
+        title: 'QtecS',
         home: DomainScreen(),
       ),
     );

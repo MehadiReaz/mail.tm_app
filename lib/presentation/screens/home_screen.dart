@@ -11,7 +11,6 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is MessagesLoaded) {
-          // Display your messages here
           return Scaffold(
             appBar: AppBar(
               title: Text('Home'),
@@ -19,7 +18,6 @@ class HomeScreen extends StatelessWidget {
             body: ListView.builder(
               itemCount: state.messages.length,
               itemBuilder: (context, index) {
-                // Build your message item
                 return ListTile(
                   title: Text(state.messages[index].subject),
                   // Add more details as needed
@@ -30,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         } else if (state is HomeError) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Error'),
+              title: const Text('Error'),
             ),
             body: Center(
               child: Text('Error: ${state.error}'),

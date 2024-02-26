@@ -12,7 +12,7 @@ class HomeInitial extends HomeState {}
 class MessagesLoaded extends HomeState {
   final List<MessageModel> messages;
 
-  MessagesLoaded(this.messages);
+  const MessagesLoaded(this.messages);
 
   @override
   List<Object> get props => [messages];

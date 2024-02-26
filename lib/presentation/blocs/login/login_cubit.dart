@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/dio.dart';
 
@@ -21,5 +22,14 @@ class LoginCubit extends Cubit<LoginState> {
     } catch (e) {
       emit(LoginError(e.toString()));
     }
+  }
+
+  void loginSuccess(String token) async {
+    // Store the token in SharedPreferences
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('token', token);
+
+    // Emit a state indicating successful login
+    emit(LoginSuccess(token));
   }
 }
