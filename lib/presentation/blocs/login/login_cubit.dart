@@ -1,4 +1,5 @@
-import 'package:bloc/bloc.dart';
+import 'dart:developer';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,6 +29,7 @@ class LoginCubit extends Cubit<LoginState> {
     // Store the token in SharedPreferences
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('token', token);
+    log('Login Token${token}');
 
     // Emit a state indicating successful login
     emit(LoginSuccess(token));

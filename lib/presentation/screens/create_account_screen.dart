@@ -1,6 +1,5 @@
 // create_account_screen.dart
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qtec_solution_task/presentation/screens/login_screen.dart';
 
@@ -20,14 +19,16 @@ class CreateAccountScreen extends StatelessWidget {
       child: BlocBuilder<CreateAccountCubit, CreateAccountState>(
         builder: (context, state) {
           if (state is CreateAccountSuccess) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => LoginScreen(
-                  selectedDomain: selectedDomain,
+            Future.delayed(Duration.zero, () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginScreen(
+                    selectedDomain: selectedDomain,
+                  ),
                 ),
-              ),
-            );
+              );
+            });
           }
           return Scaffold(
             body: SafeArea(
@@ -114,7 +115,7 @@ class CreateAccountScreen extends StatelessWidget {
                       ),
                       if (state is CreateAccountError)
                         SizedBox(
-                          height: 20,
+                          // height: 20,
                           child: Text(
                             state.error,
                             style: const TextStyle(color: Colors.red),

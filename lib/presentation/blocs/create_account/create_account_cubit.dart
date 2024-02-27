@@ -1,5 +1,6 @@
 // create_account_cubit.dart
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -20,9 +21,20 @@ class CreateAccountCubit extends Cubit<CreateAccountState> {
         },
       );
       emit(const CreateAccountSuccess());
-    } catch (e) {
-      debugPrint("Error during account creation: $e");
-      emit(CreateAccountError(e.toString()));
+    } catch (error) {
+      if (error is DioException && error.response?.statusCode == 422) {
+        // Handle validation error
+        final detailedError = error.response?.data;
+        final violations = detailedError?['violations'] ?? [];
+        final errorMessage = violations
+            .map((violation) =>
+                '${violation['propertyPath']}: ${violation['message']}')
+            .join(', ');
+        emit(CreateAccountError(errorMessage));
+      } else {
+        debugPrint("Error during account creation: $error");
+        emit(const CreateAccountError('An unexpected error occurred.'));
+      }
     }
   }
 }
