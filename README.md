@@ -1,16 +1,98 @@
-# qtec_solution_task
+# mail.tm App
 
-A new Flutter project.
+mail.tm is a Flutter-based mobile application designed to provide users with temporary email services. It allows users to create temporary email accounts with selected domains, receive and view emails, and perform basic email-related actions.
+
+## Table of Contents
+
+1. [Key Features](#key-features)
+2. [Installation](#installation)
+3. [Getting Started](#getting-started)
+4. [User Guide](#user-guide)
+   - [Creating an Account](#creating-an-account)
+   - [Logging In](#logging-in)
+   - [Home Screen](#home-screen)
+   - [Email Details Screen](#email-details-screen)
+   - [Domain Selection](#domain-selection)
+   - [Logout](#logout)
+5. [Troubleshooting](#troubleshooting)
+6. [Contributing](#contributing)
+7. [License](#license)
+
+## Key Features
+
+- **Temporary Email Creation**: Users can create temporary email accounts with selected domains.
+- **Inbox Management**: View received emails and check their details.
+- **Domain Selection**: Choose from available domains for email addresses.
+- **Account Creation**: Users can create accounts with a specified email address and password.
+- **Login and Logout**: Securely log in and log out of the application.
+
+## Installation
+
+To install the mail.tm app, follow these steps:
+
+1. [Download](#) the latest version of the app.
+2. Install the app on your device.
+3. Open the app to start using mail.tm.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+After installing the app, follow these steps to get started:
 
-A few resources to get you started if this is your first Flutter project:
+1. **Create an Account**: If you are a new user, create a mail.tm account by providing a valid email address and password.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. **Log In**: Log in to your account using your credentials.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. **Explore Features**: Navigate through the app to explore its features, including inbox management and email creation.
+
+## User Guide
+
+### Creating an Account
+
+1. Open the app and click on the "Create Account" button on the login screen.
+2. Provide a valid email address and a secure password.
+3. Complete the account creation process.
+
+### Logging In
+
+1. Enter your registered email address and password.
+2. Click the "Login" button to access your account.
+
+### Home Screen
+
+1. The home screen displays the user's inbox.
+2. Click on an email to view its details.
+3. Swipe down to refresh the inbox.
+
+### Email Details Screen
+
+1. The email details screen provides information about a specific email.
+2. Use the back button to return to the inbox.
+
+### Domain Selection
+
+1. Choose a domain when creating a temporary email account.
+2. Available domains are listed for selection.
+
+### Logout
+
+1. Click on the logout button in the app bar.
+2. The user will be logged out, and the token will be cleared.
+3. The app will navigate to the domain selection screen.
+
+## Troubleshooting
+
+- If you encounter any issues, check your internet connection.
+- Ensure that you are using the latest version of the app.
+- For further assistance, contact [support@mail.tm.com](mailto:support@mail.tm.com).
+
+## Contributing
+
+We welcome contributions from the community. To contribute, follow these steps:
+
+1. Fork the repository.
+2. Make your changes.
+3. Submit a pull request.
+
+## License
+
+The mail.tm app is licensed under the [MIT License](LICENSE).

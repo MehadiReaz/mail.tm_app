@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -25,35 +26,41 @@ class LoginCubit extends Cubit<LoginState> {
       final String token = response.data['token'];
       log('Token received: $token');
 
-      // Store the token in SharedPreferences
       loginSuccess(token);
     } catch (error) {
-      // Handle errors
+      if (error is DioException) {
+        if (error.response?.statusCode == 401) {
+          // Handle invalid credentials error
+          emit(const LoginError(
+              'Invalid credentials. Please check your email and password.'));
+        } else {
+          // Handle other DioErrors
+          emit(const LoginError('An unexpected error occurred.'));
+        }
+      } else {
+        // Handle non-Dio errors
+        emit(const LoginError('An unexpected error occurred.'));
+      }
     }
   }
 
   Future<void> logout(BuildContext context) async {
-    // Clear the token in SharedPreferences
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('token');
 
-    // Navigate back to the domain screen and remove all routes from the stack
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-        builder: (context) => DomainScreen(), // Replace with your domain screen
+        builder: (context) => const DomainScreen(),
       ),
       (route) => false,
     );
   }
 
   void loginSuccess(String token) async {
-    // Store the token in SharedPreferences
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('token', token);
     log('Login Token $token');
-
-    // Emit a state indicating successful login
     emit(LoginSuccess(token));
   }
 }

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qtec_solution_task/presentation/screens/email_details_screen.dart';
 import 'package:intl/intl.dart';
 
-import '../blocs/home/home_cubit.dart';
-import '../blocs/login/login_cubit.dart';
+import '../cubit/home/home_cubit.dart';
+import '../cubit/login/login_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -44,6 +44,12 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildBody(HomeState state, BuildContext context) {
     if (state is MessagesLoaded) {
+      if (state.messages.isEmpty) {
+        return const Center(
+          child: Text('Your Inbox is empty'),
+        );
+      }
+
       return RefreshIndicator(
         onRefresh: () async {
           context.read<HomeCubit>().getMessages();

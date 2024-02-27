@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../data/models/home_model.dart'; // Import DateFormat
+import '../../data/models/home_model.dart';
+import '../widgets/custom_height.dart';
+import '../widgets/custom_width.dart'; // Import DateFormat
 
 class DetailsScreen extends StatelessWidget {
   final MessageModel message;
 
-  DetailsScreen({required this.message});
+  const DetailsScreen({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -42,26 +44,26 @@ class DetailsScreen extends StatelessWidget {
                     backgroundColor: Colors.blue,
                     child: Text(
                       message.from['name'][0],
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
                   ),
-                  SizedBox(width: 8),
+                  const CustomWidth(width: 8),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         message.from['name'],
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
                       Text(
                         message.from['address'],
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
                         ),
@@ -70,27 +72,27 @@ class DetailsScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const CustomHeight(height: 1.3),
               Text(
                 DateFormat('EEE, MMM dd, hh:mm a')
                     .format(DateTime.parse(message.createdAt)),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(height: 16),
+              const CustomHeight(height: 1.3),
               Text(
                 message.subject,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
               ),
-              SizedBox(height: 24),
+              const CustomHeight(height: 2.4),
               Text(
                 message.intro,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 18,
                   color: Colors.white,

@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:qtec_solution_task/presentation/widgets/custom_height.dart';
 
 import '../../data/models/domain_model.dart';
-import '../blocs/domain/domain_cubit.dart';
+import '../cubit/domain/domain_cubit.dart';
 import 'login_screen.dart';
 
 class DomainScreen extends StatelessWidget {
@@ -35,7 +35,7 @@ class DomainScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const CustomHeight(height: 60),
+            const CustomHeight(height: 6),
             const Text(
               'Availavle Domains',
               style: TextStyle(
@@ -43,7 +43,7 @@ class DomainScreen extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                   fontSize: 26),
             ),
-            const CustomHeight(height: 20),
+            const CustomHeight(height: 2),
             ListView.builder(
               shrinkWrap: true,
               itemCount: state.domains.length,
