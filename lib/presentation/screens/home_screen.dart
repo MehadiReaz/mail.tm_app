@@ -4,6 +4,7 @@ import 'package:qtec_solution_task/presentation/screens/email_details_screen.dar
 import 'package:intl/intl.dart';
 
 import '../blocs/home/home_cubit.dart';
+import '../blocs/login/login_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -26,7 +27,13 @@ class HomeScreen extends StatelessWidget {
             ),
             actions: [
               IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.logout_outlined))
+                onPressed: () {
+                  context.read<LoginCubit>().logout(context);
+                },
+                icon: const Icon(
+                  Icons.logout_outlined,
+                ),
+              ),
             ],
           ),
           body: _buildBody(state, context),
