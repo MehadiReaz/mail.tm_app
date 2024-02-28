@@ -102,16 +102,12 @@ After installing the app, follow these steps to get started:
       <br />
       Home Screen
     </td>
-  </tr>
-  <tr>
+      <tr>
     <td align="center">
-      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/2dd650bc-2d1b-41c1-94bd-9bee9f9d016c" width="200"/>
+      <img src="https://github.com/MehadiReaz/mail.tm_app/assets/65062761/3141531c-1c62-412d-a432-7fc94cc489fc" width="200"/>
       <br />
       Email Detail Screen
-    </td>    
-  </tr>
+    </td>
+
 </table>
 
-## License
-
-The mail.tm app is licensed under the [MIT License](LICENSE).
