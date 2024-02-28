@@ -31,13 +31,33 @@ class SplashScreen extends StatelessWidget {
           );
         }
       },
-      child: const Scaffold(
+      child: Scaffold(
         body: Center(
-          child: Text(
-            'B',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-        ),
+            child: RichText(
+          text: const TextSpan(children: [
+            TextSpan(
+              text: '@',
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF6875F5)),
+            ),
+            TextSpan(
+              text: 'mail.',
+              style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFFFFFFF)),
+            ),
+            TextSpan(
+              text: 'tm',
+              style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF6875F5)),
+            ),
+          ]),
+        )),
       ),
     );
   }

@@ -109,7 +109,7 @@ class App extends StatelessWidget {
                     ),
                     useMaterial3: false),
                 debugShowCheckedModeBanner: false,
-                title: 'QtecS',
+                title: '@mail.tm',
                 home: const SplashScreen(),
               ),
             );

@@ -14,9 +14,7 @@ mail.tm is a Flutter-based mobile application designed to provide users with tem
    - [Email Details Screen](#email-details-screen)
    - [Domain Selection](#domain-selection)
    - [Logout](#logout)
-5. [Troubleshooting](#troubleshooting)
-6. [Contributing](#contributing)
-7. [License](#license)
+5. [License](#license)
 
 ## Key Features
 
@@ -79,19 +77,33 @@ After installing the app, follow these steps to get started:
 2. The user will be logged out, and the token will be cleared.
 3. The app will navigate to the domain selection screen.
 
-## Troubleshooting
-
-- If you encounter any issues, check your internet connection.
-- Ensure that you are using the latest version of the app.
-- For further assistance, contact [support@mail.tm.com](mailto:support@mail.tm.com).
-
-## Contributing
-
-We welcome contributions from the community. To contribute, follow these steps:
-
-1. Fork the repository.
-2. Make your changes.
-3. Submit a pull request.
+## Screenshorts
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/1748c125-1eac-4d83-afc4-a9a6f38d4a76" width="200"/>
+      <br />
+      Spalsh Screen
+    </td>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/5ae55922-66b9-476a-9c48-d80aa11541a2" width="200"/>
+      <br />
+      Login Screen
+    </td>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/5507770c-6c6d-4094-9e1f-ec73ccebcc70" width="200"/>
+      <br />
+      Home Screen
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/2dd650bc-2d1b-41c1-94bd-9bee9f9d016c" width="200"/>
+      <br />
+      Email Detail Screen
+    </td>    
+  </tr>
+</table>
 
 ## License
 
