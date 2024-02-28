@@ -77,21 +77,28 @@ After installing the app, follow these steps to get started:
 2. The user will be logged out, and the token will be cleared.
 3. The app will navigate to the domain selection screen.
 
+
+
 ## Screenshorts
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/1748c125-1eac-4d83-afc4-a9a6f38d4a76" width="200"/>
+      <img src="https://github.com/MehadiReaz/mail.tm_app/assets/65062761/aac1c0d9-20ad-4c1e-9fca-f8b6b48f8e5b" width="200"/>
       <br />
-      Spalsh Screen
+      Domain Screen
     </td>
     <td align="center">
-      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/5ae55922-66b9-476a-9c48-d80aa11541a2" width="200"/>
+      <img src="https://github.com/MehadiReaz/mail.tm_app/assets/65062761/9e20fe90-68c4-472e-a31f-350924f775bd" width="200"/>
       <br />
       Login Screen
     </td>
+     <td align="center">
+      <img src="https://github.com/MehadiReaz/mail.tm_app/assets/65062761/1f299ff1-da68-4578-a31b-e306df7445d1" width="200"/>
+      <br />
+      Create Account Screen
+    </td>
     <td align="center">
-      <img src="https://github.com/MehadiReaz/CraftyBay/assets/65062761/5507770c-6c6d-4094-9e1f-ec73ccebcc70" width="200"/>
+      <img src="https://github.com/MehadiReaz/mail.tm_app/assets/65062761/9c2e7fb8-eaef-4970-9ddf-23611e011cad" width="200"/>
       <br />
       Home Screen
     </td>
