@@ -1,13 +1,23 @@
+// login_state.dart
+
 part of 'login_cubit.dart';
 
-abstract class LoginState extends Equatable {
-  const LoginState();
+class LoginState extends Equatable {
+  final String? address; // Add this line
+  final String? password;
+
+  const LoginState({this.address, this.password}); // Add this constructor
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [address ?? '', password ?? ''];
 }
 
-class LoginInitial extends LoginState {}
+class LoginInitial extends LoginState {
+  const LoginInitial({super.address, super.password});
+
+  @override
+  List<Object> get props => [address ?? '', password ?? ''];
+}
 
 class LoginSuccess extends LoginState {
   final String token;

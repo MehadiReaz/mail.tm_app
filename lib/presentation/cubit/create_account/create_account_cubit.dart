@@ -8,7 +8,7 @@ import '../../../app/dio.dart';
 part 'create_account_state.dart';
 
 class CreateAccountCubit extends Cubit<CreateAccountState> {
-  CreateAccountCubit() : super(CreateAccountInitial());
+  CreateAccountCubit() : super(const CreateAccountInitial());
 
   Future<void> createAccount(String address, String password) async {
     try {
@@ -35,5 +35,13 @@ class CreateAccountCubit extends Cubit<CreateAccountState> {
         emit(const CreateAccountError('An unexpected error occurred.'));
       }
     }
+  }
+
+  void addressChanged(String address) {
+    emit(CreateAccountInitial(address: address, password: state.password));
+  }
+
+  void passwordChanged(String password) {
+    emit(CreateAccountInitial(address: state.address, password: password));
   }
 }
