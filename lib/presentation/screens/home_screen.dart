@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qtec_solution_task/presentation/screens/email_details_screen.dart';
 import 'package:intl/intl.dart';
 
+import '../cubit/email_details/email_details_cubit.dart';
 import '../cubit/home/home_cubit.dart';
 import '../cubit/login/login_cubit.dart';
+import 'email_details_screens.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +62,7 @@ class HomeScreen extends StatelessWidget {
 
             return ListTile(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailsScreen(message: message),
-                  ),
-                );
+                _navigateToEmailDetails(context, message.id);
               },
               leading: CircleAvatar(
                 backgroundColor: Colors.blue,
@@ -111,5 +107,15 @@ class HomeScreen extends StatelessWidget {
         child: CircularProgressIndicator(),
       );
     }
+  }
+
+  void _navigateToEmailDetails(BuildContext context, String emailId) {
+    context.read<EmailDetailsCubit>().getEmailDetails(emailId);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EmailDetailsScreen(emailId: emailId),
+      ),
+    );
   }
 }

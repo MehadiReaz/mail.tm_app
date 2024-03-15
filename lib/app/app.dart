@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 
 import '../presentation/cubit/create_account/create_account_cubit.dart';
 import '../presentation/cubit/domain/domain_cubit.dart';
+import '../presentation/cubit/email_details/email_details_cubit.dart';
 import '../presentation/cubit/home/home_cubit.dart';
 import '../presentation/cubit/login/login_cubit.dart';
 import '../presentation/cubit/splash/splash_cubit.dart';
@@ -23,6 +24,7 @@ class App extends StatelessWidget {
           return Sizer(builder: (context, orientation, deviceType) {
             return MultiBlocProvider(
               providers: [
+                BlocProvider(create: (context) => EmailDetailsCubit()),
                 BlocProvider(create: (context) => SplashCubit()),
                 BlocProvider(create: (context) => DomainCubit()),
                 BlocProvider(create: (context) => LoginCubit()),
