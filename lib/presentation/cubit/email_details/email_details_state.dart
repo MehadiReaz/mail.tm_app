@@ -1,6 +1,6 @@
 part of 'email_details_cubit.dart';
 
-abstract class EmailDetailsState extends Equatable {
+class EmailDetailsState extends Equatable {
   const EmailDetailsState();
 
   @override
@@ -19,6 +19,8 @@ class EmailDetailsLoaded extends EmailDetailsState {
   @override
   List<Object> get props => [emailDetails];
 }
+
+class EmailDeleted extends EmailDetailsState {}
 
 class EmailDetailsError extends EmailDetailsState {
   final String errorMessage;
