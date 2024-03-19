@@ -14,7 +14,7 @@ mail.tm is a Flutter-based mobile application designed to provide users with tem
    - [Email Details Screen](#email-details-screen)
    - [Domain Selection](#domain-selection)
    - [Logout](#logout)
-5. [License](#license)
+
 
 ## Key Features
 
