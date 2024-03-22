@@ -35,7 +35,7 @@ class LoginScreen extends StatelessWidget {
                       child: Text(
                         'Welcome to TEMP MAIL',
                         style: TextStyle(
-                            color: Colors.white,
+                            //color: Colors.white,
                             fontWeight: FontWeight.w700,
                             fontSize: 24),
                       ),
@@ -60,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                         Text(
                           '@$selectedDomain',
                           style: const TextStyle(
-                              color: Colors.white,
+                              //color: Colors.white,
                               fontWeight: FontWeight.w600,
                               fontSize: 20),
                         ),
@@ -96,14 +96,14 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Divider(
-                            color: Colors.white,
-                          ),
+                              //color: Colors.white,
+                              ),
                         ),
                         Center(child: Text(' Don\'t have an account? ')),
                         Expanded(
                           child: Divider(
-                            color: Colors.white,
-                          ),
+                              //color: Colors.white,
+                              ),
                         ),
                       ],
                     ),

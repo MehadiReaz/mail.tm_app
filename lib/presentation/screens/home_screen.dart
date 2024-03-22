@@ -5,10 +5,10 @@ import 'package:intl/intl.dart';
 import '../cubit/email_details/email_details_cubit.dart';
 import '../cubit/home/home_cubit.dart';
 import '../cubit/login/login_cubit.dart';
-import 'email_details_screens.dart';
+import 'email_details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                 backgroundColor: Colors.blue,
                 child: Text(
                   message.from['name'][0],
-                  style: const TextStyle(color: Colors.white),
+                  //style: const TextStyle(color: Colors.white),
                 ),
               ),
               title: Text(

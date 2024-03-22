@@ -38,10 +38,7 @@ class DomainScreen extends StatelessWidget {
             const CustomHeight(height: 6),
             const Text(
               'Availavle Domains',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 26),
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 26),
             ),
             const CustomHeight(height: 2),
             ListView.builder(

@@ -48,7 +48,7 @@ class CreateAccountScreen extends StatelessWidget {
                         child: Text(
                           'Create an Account',
                           style: TextStyle(
-                              color: Colors.white,
+                              //color: Colors.white,
                               fontWeight: FontWeight.w700,
                               fontSize: 24.sp),
                         ),
@@ -74,7 +74,7 @@ class CreateAccountScreen extends StatelessWidget {
                           Text(
                             '@$selectedDomain',
                             style: const TextStyle(
-                                color: Colors.white,
+                                //color: Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 20),
                           ),
@@ -87,7 +87,7 @@ class CreateAccountScreen extends StatelessWidget {
                         onChanged: (value) {
                           context
                               .read<CreateAccountCubit>()
-                              .addressChanged(value);
+                              .passwordChanged(value);
                         },
                         controller: passwordController,
                         decoration:
@@ -111,14 +111,14 @@ class CreateAccountScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Divider(
-                              color: Colors.white,
-                            ),
+                                //color: Colors.white,
+                                ),
                           ),
                           Center(child: Text(' Already have an account ')),
                           Expanded(
                             child: Divider(
-                              color: Colors.white,
-                            ),
+                                //color: Colors.white,
+                                ),
                           ),
                         ],
                       ),

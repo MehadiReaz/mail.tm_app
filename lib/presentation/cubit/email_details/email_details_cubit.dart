@@ -49,7 +49,6 @@ class EmailDetailsCubit extends Cubit<EmailDetailsState> {
         'https://api.mail.tm/messages/$emailId',
         options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
-
       emit(EmailDeleted());
     } catch (e) {
       emit(EmailDetailsError('Failed to delete email: $e'));
