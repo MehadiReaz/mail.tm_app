@@ -1,30 +1,29 @@
-// create_account_state.dart
 part of 'create_account_cubit.dart';
 
 abstract class CreateAccountState extends Equatable {
-  final String? address; // Add this line
-  final String? password;
-  const CreateAccountState({this.address, this.password});
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  //CreateAccountState({addressController, passwordController});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [addressController.text, passwordController.text];
 }
 
 class CreateAccountInitial extends CreateAccountState {
-  const CreateAccountInitial({super.address, super.password});
+  CreateAccountInitial({addressController, passwordController});
 
   @override
-  List<Object> get props => [address ?? '', password ?? ''];
+  List<Object> get props => [addressController.text, passwordController.text];
 }
 
 class CreateAccountSuccess extends CreateAccountState {
-  const CreateAccountSuccess({super.address, super.password});
+  CreateAccountSuccess({addressController, passwordController});
 }
 
 class CreateAccountError extends CreateAccountState {
   final String error;
 
-  const CreateAccountError(this.error);
+  CreateAccountError(this.error);
 
   @override
   List<Object> get props => [error];

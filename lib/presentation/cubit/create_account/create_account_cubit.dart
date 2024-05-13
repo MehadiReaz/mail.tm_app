@@ -8,9 +8,8 @@ import '../../../app/dio.dart';
 part 'create_account_state.dart';
 
 class CreateAccountCubit extends Cubit<CreateAccountState> {
-  CreateAccountCubit() : super(const CreateAccountInitial());
-
-  Future<void> createAccount(String address, String password) async {
+  CreateAccountCubit() : super(CreateAccountInitial());
+  Future<void> createAccount(context, String address, String password) async {
     try {
       await DioInstance.dio.post(
         '/accounts',
@@ -19,29 +18,18 @@ class CreateAccountCubit extends Cubit<CreateAccountState> {
           'password': password,
         },
       );
-      emit(const CreateAccountSuccess());
+      createAccountSuccess(context);
+      // emit(CreateAccountSuccess());
     } catch (error) {
-      if (error is DioException && error.response?.statusCode == 422) {
-        // Handle validation error
-        final detailedError = error.response?.data;
-        final violations = detailedError?['violations'] ?? [];
-        final errorMessage = violations
-            .map((violation) =>
-                '${violation['propertyPath']}: ${violation['message']}')
-            .join(', ');
-        emit(CreateAccountError(errorMessage));
+      if (error is DioException) {
+        if (error.response?.statusCode == 422) {
+          emit(CreateAccountError('An unexpected error occurred.'));
+        }
       } else {
-        debugPrint("Error during account creation: $error");
-        emit(const CreateAccountError('An unexpected error occurred.'));
+        emit(CreateAccountError('An unexpected error occurred.'));
       }
     }
   }
 
-  void addressChanged(String address) {
-    emit(CreateAccountInitial(address: address, password: state.password));
-  }
-
-  void passwordChanged(String password) {
-    emit(CreateAccountInitial(address: state.address, password: password));
-  }
+  Future<void> createAccountSuccess(context) async {}
 }

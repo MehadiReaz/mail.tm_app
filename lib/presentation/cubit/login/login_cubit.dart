@@ -12,10 +12,9 @@ import '../../screens/domain_screen.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(const LoginInitial());
+  LoginCubit() : super(LoginInitial());
 
-  Future<void> login(
-      BuildContext context, String address, String password) async {
+  Future<void> login(context, String address, String password) async {
     try {
       final response = await DioInstance.dio.post(
         '/token',
@@ -27,18 +26,17 @@ class LoginCubit extends Cubit<LoginState> {
 
       final String token = response.data['token'];
       log('Token received: $token');
-
       loginSuccess(context, token);
     } catch (error) {
       if (error is DioException) {
         if (error.response?.statusCode == 401) {
-          emit(const LoginError(
+          emit(LoginError(
               'Invalid credentials. Please check your email and password.'));
         } else {
-          emit(const LoginError('An unexpected error occurred.'));
+          emit(LoginError('An unexpected error occurred.'));
         }
       } else {
-        emit(const LoginError('An unexpected error occurred.'));
+        emit(LoginError('An unexpected error occurred.'));
       }
     }
   }
@@ -68,13 +66,5 @@ class LoginCubit extends Cubit<LoginState> {
       ),
       (route) => false,
     );
-  }
-
-  void addressChanged(String address) {
-    emit(LoginInitial(address: address, password: state.password));
-  }
-
-  void passwordChanged(String password) {
-    emit(LoginInitial(address: state.address, password: password));
   }
 }
