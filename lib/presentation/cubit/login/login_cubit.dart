@@ -23,7 +23,6 @@ class LoginCubit extends Cubit<LoginState> {
           "password": password,
         },
       );
-
       final String token = response.data['token'];
       log('Token received: $token');
       loginSuccess(context, token);

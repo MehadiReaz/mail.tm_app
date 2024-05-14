@@ -1,9 +1,8 @@
 part of 'create_account_cubit.dart';
 
-abstract class CreateAccountState extends Equatable {
+class CreateAccountState extends Equatable {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  //CreateAccountState({addressController, passwordController});
 
   @override
   List<Object> get props => [addressController.text, passwordController.text];
@@ -17,7 +16,11 @@ class CreateAccountInitial extends CreateAccountState {
 }
 
 class CreateAccountSuccess extends CreateAccountState {
-  CreateAccountSuccess({addressController, passwordController});
+  final String success;
+  CreateAccountSuccess(this.success);
+
+  @override
+  List<Object> get props => [success];
 }
 
 class CreateAccountError extends CreateAccountState {

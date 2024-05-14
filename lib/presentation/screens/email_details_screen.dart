@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:qtec_solution_task/presentation/screens/home_screen.dart';
 
 import '../cubit/email_details/email_details_cubit.dart';
+import '../cubit/home/home_cubit.dart';
 
 class EmailDetailsScreen extends StatelessWidget {
   final String emailId;
@@ -19,29 +20,35 @@ class EmailDetailsScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
-                    (route) => false);
-              },
-              icon: const Icon(Icons.arrow_back_ios_new),
-            ),
-            centerTitle: true,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            actions: [
-              IconButton(
-                onPressed: () => _deleteEmail(context),
-                icon: const Icon(Icons.delete),
+        return PopScope(
+          onPopInvoked: (didPop) {
+            context.read<HomeCubit>().getMessages();
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  // Navigator.pushAndRemoveUntil(
+                  //     context,
+                  //     MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  //     (route) => false);
+                },
+                icon: const Icon(Icons.arrow_back_ios_new),
               ),
-            ],
+              centerTitle: true,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              actions: [
+                IconButton(
+                  onPressed: () => _deleteEmail(context),
+                  icon: const Icon(Icons.delete),
+                ),
+              ],
+            ),
+            body: _buildBody(context, state),
           ),
-          body: _buildBody(context, state),
         );
       },
     );

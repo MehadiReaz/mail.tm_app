@@ -46,8 +46,6 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
                               textInputAction: TextInputAction.next,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
@@ -57,8 +55,9 @@ class LoginScreen extends StatelessWidget {
                               },
                               keyboardType: TextInputType.emailAddress,
                               controller: state.addressController,
-                              decoration: InputDecoration(
-                                  hintText: 'example@$selectedDomain'),
+                              decoration: const InputDecoration(
+                                  prefixIcon: Icon(Icons.email),
+                                  hintText: 'example'),
                             ),
                           ),
                           const CustomWidth(width: 2),
@@ -78,7 +77,6 @@ class LoginScreen extends StatelessWidget {
                         onChanged: (_) {
                           passwordFocus.requestFocus();
                         },
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.visiblePassword,
                         validator: (value) {
@@ -88,8 +86,9 @@ class LoginScreen extends StatelessWidget {
                           return null;
                         },
                         controller: state.passwordController,
-                        decoration:
-                            const InputDecoration(hintText: 'Enter Password'),
+                        decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.password),
+                            hintText: 'Enter Password'),
                         obscureText: true,
                       ),
                       const CustomHeight(height: 2),
@@ -106,6 +105,16 @@ class LoginScreen extends StatelessWidget {
                         },
                         child: const Text('Login'),
                       ),
+                      if (state is LoginError) ...[
+                        const CustomHeight(height: 2),
+                        SizedBox(
+                          // height: 20,
+                          child: Text(
+                            state.error,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ],
                       const CustomHeight(height: 3),
                       const Row(
                         children: [
