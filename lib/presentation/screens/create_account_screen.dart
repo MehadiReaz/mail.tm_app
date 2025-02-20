@@ -115,7 +115,7 @@ class CreateAccountScreen extends StatelessWidget {
                         SizedBox(
                           // height: 20,
                           child: Text(
-                            state.success!,
+                            state.success,
                             style: const TextStyle(color: Colors.green),
                           ),
                         ),

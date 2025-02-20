@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 import '../cubit/email_details/email_details_cubit.dart';
 import '../cubit/home/home_cubit.dart';
@@ -86,11 +85,11 @@ class HomeScreen extends StatelessWidget {
               trailing: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    DateFormat('dd MMM')
-                        .format(DateTime.parse(message.createdAt)),
-                    style: const TextStyle(fontSize: 12),
-                  ),
+                  // Text(
+                  //   DateFormat('dd MMM')
+                  //       .format(DateTime.parse(message.createdAt)),
+                  //   style: const TextStyle(fontSize: 12),
+                  // ),
                   if (!message.seen) const Icon(Icons.mark_email_unread),
                 ],
               ),

@@ -69,10 +69,8 @@ class AppTheme {
         onSecondary: Colors.white,
         error: Colors.red,
         onError: Colors.white,
-        onBackground: Colors.black,
         surface: Color(0xffE5E5E5),
         onSurface: Colors.black,
-        background: Colors.white,
         brightness: Brightness.light,
       ),
       // Add other theme properties as needed
@@ -143,10 +141,8 @@ class AppTheme {
           onSecondary: Colors.white,
           error: Colors.red,
           onError: Colors.white,
-          onBackground: Colors.white,
           surface: Color(0xff212833),
           onSurface: Colors.white,
-          background: Color(0xff121C24),
           brightness: Brightness.dark,
         ),
         useMaterial3: false);

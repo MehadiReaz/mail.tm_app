@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 import 'package:qtec_solution_task/presentation/screens/home_screen.dart';
 
 import '../cubit/email_details/email_details_cubit.dart';
@@ -174,6 +174,6 @@ class EmailDetailsScreen extends StatelessWidget {
 
   convertDateFromString(String formattedDate) {
     DateTime dateTime = DateTime.parse(formattedDate);
-    return DateFormat('dd-MMM-yyyy hh:mm a').format(dateTime);
+    // return DateFormat('dd-MMM-yyyy hh:mm a').format(dateTime);
   }
 }
