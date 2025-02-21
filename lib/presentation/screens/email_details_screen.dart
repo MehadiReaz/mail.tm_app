@@ -173,7 +173,7 @@ class EmailDetailsScreen extends StatelessWidget {
   }
 
   convertDateFromString(String formattedDate) {
-    DateTime dateTime = DateTime.parse(formattedDate);
+    // DateTime dateTime = DateTime.parse(formattedDate);
     // return DateFormat('dd-MMM-yyyy hh:mm a').format(dateTime);
   }
 }
