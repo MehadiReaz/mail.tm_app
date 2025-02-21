@@ -1,64 +1,82 @@
 name: Flutter Build & Deploy
-
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
 jobs:
-  build:
-    name: Build APK & IPA
+  build_android:
+    name: Build Android
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.16.0"
-
+          flutter-version: "3.29.0"
+          cache: true
+      
       - name: Install dependencies
         run: flutter pub get
-
+      
       - name: Analyze project source
         run: flutter analyze
-
+      
       - name: Run tests
         run: flutter test
-
+      
       - name: Build APK
         run: flutter build apk --release
-
+      
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
 
-  build_ios:
-    name: Build IPA
-    runs-on: macos-latest
-
+  create_github_release:
+    name: Create GitHub Release
+    needs: [build_android]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      
+      - name: Get version from pubspec
+        id: get_version
+        run: |
+          VERSION=$(grep 'version:' pubspec.yaml | sed 's/version: //')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+      
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
         with:
-          flutter-version: "3.16.0"
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Build iOS
-        run: flutter build ios --release --no-codesign
-
-      - name: Upload IPA artifact
-        uses: actions/upload-artifact@v4
+          path: artifacts
+      
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
         with:
-          name: release-ipa
-          path: build/ios/iphoneos/*.app
+          tag_name: v${{ steps.get_version.outputs.version }}
+          name: Release v${{ steps.get_version.outputs.version }}
+          draft: false
+          prerelease: false
+          files: |
+            artifacts/release-apk/*.apk
+          body: |
+            ## Flutter App Release v${{ steps.get_version.outputs.version }}
+            
+            ### What's New
+            - Release built from latest main branch
+            - Build date: ${{ github.event.head_commit.timestamp }}
+            
+            ### Downloads
+            - Android APK: Download the APK file from the Assets section below
+            
+            ### Commit Details
+            ${{ github.event.head_commit.message }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
